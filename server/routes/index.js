@@ -1,11 +1,11 @@
 var express = require("express");
-var router = express.Router();
+var routes = express.Router();
 var users = require("./users");
-var message = require("./messages");
+//var message = require("./messages");
 
 
 
-router.use("./user", users);
+routes.use("/users", users);
 // router.use("./message" message);
 
-module.exports = router;
+module.exports = routes;

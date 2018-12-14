@@ -1,16 +1,12 @@
-const mongoose = require( 'mongoose' );
+module.exports = (req,res) => {
+console.log("req", req);
+res.send(req.body);
+};
 
-var messageSchema = new mongoose.Schema({
-	username : {
-		type: String,
-		unique: true,
-		required: true
-	},
-	password: {
-		type: String,
-		required: true
-	},
-});
+function save(req, res) {
+    let userData = {
+        userName: req.body.user.userName,
+        password: req.body.user.Password
+    };
 
-mongoose.model( 'Message', messageSchema );
- 
+}

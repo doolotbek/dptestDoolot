@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import axios from 'axios'
+// import blogPastActions from "./actions/blogPostActions";
 import "./Register.css";
 
 export default class Register extends Component {
@@ -8,22 +10,21 @@ export default class Register extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
   }
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
-    
   }
- 
+
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     let data = {
@@ -31,6 +32,16 @@ export default class Register extends Component {
       password: this.state.password
     }
     console.log(data)
+
+    axios.post("/api/users/register", {
+      body:  JSON.stringify(data)
+   })
+   .then(function(response){ 
+    console.log("respose",response)   
+   })
+   .catch(function(error){ 
+   console.log("error",error)
+   });
 
   }
 
@@ -67,4 +78,3 @@ export default class Register extends Component {
     );
   }
 }
-
