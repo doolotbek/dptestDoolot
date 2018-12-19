@@ -5,7 +5,6 @@ const port = process.env.PORT || 5000;
 var bodyParser = require('body-parser');
 
 require('./setUpMongoose');
-require('./model/User');
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());

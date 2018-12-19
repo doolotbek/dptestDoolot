@@ -3,8 +3,6 @@ var routes = express.Router();
 var users = require("./users");
 //var message = require("./messages");
 
-
-
 routes.use("/users", users);
 // router.use("./message" message);
 

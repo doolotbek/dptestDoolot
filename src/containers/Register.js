@@ -27,17 +27,16 @@ export default class Register extends Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-    let data = {
+    var data = { 
       username: this.state.email,
       password: this.state.password
     }
     console.log(data)
 
-    axios.post("/api/users/register", {
-      body:  JSON.stringify(data)
+    axios.post("/api/users/register", { data
    })
    .then(function(response){ 
-    console.log("respose",response)   
+    console.log("respose",response)    
    })
    .catch(function(error){ 
    console.log("error",error)

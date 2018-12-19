@@ -1,4 +1,5 @@
 const mongoose = require( 'mongoose' );
+
 var dbuser = 'oleksiileontiev',
 	dbpassword = 'MtPVtPGqJaXB42';
 var dbURI = 'mongodb://'+dbuser+':'+dbpassword+'@ds151452.mlab.com:51452/dreampirates';
@@ -18,3 +19,5 @@ mongoose.connection.on('connected', function () {
     process.exit(0);
   });
 });
+
+require('./model/Performer');

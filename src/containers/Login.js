@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
+import axios from 'axios';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
 
+    
     this.state = {
       email: "",
       password: ""
@@ -25,12 +27,29 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+ 
     let data = {
       username: this.state.email,
       password: this.state.password
     }
     console.log(data)
+
+    axios.post("/api/users/login", { data
+   })
+   .then(function(response){ 
+     if(response.data.status === true){
+       this.props.history.push('/chat');
+    }
+    else {
+      alert(<h1> "fack off" </h1> );
+    }
+    console.log("respose",response)   
+   })
+   .catch(function(error){ 
+   console.log("error",error)
+   });
+  
+   
 
   }
 
