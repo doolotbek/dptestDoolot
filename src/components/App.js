@@ -5,6 +5,8 @@ import "./App.css";
 import Routes from "./Routes";
 import { LinkContainer } from "react-router-bootstrap";
 import NotFound from "./NotFound";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Chat from "./Chat";
 
 
 class App extends Component {
@@ -24,20 +26,19 @@ class App extends Component {
 							<LinkContainer to="/register">
 								<NavItem>Signup</NavItem>
 							</LinkContainer>
-							<LinkContainer to="/chat">
-							<NavItem>Chat</NavItem>
-							</LinkContainer>
 							<LinkContainer to="/login">
 								<NavItem>Login</NavItem>
 							</LinkContainer>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
-				<Routes />
+				<Routes path="/chat"
+			 render={() => <Redirect to="/chat"/>} />
+          
 				<NotFound />
 			</div>
 		);
 	}
-}
+}	
 
 export default App;

@@ -1,12 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
+import { applyMiddleware, compose, createStore } from "redux";
+import reducer from "./reducers/reducer";
+
+
+const logger = store => next => action => {
+  console.group(action.type);
+  console.info("dispatching", action);
+  let result = next(action);
+  console.log("next state", store.getState());
+  console.groupEnd(action.type);
+  return result;
+};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(
+  reducer,
+  composeEnhancers(applyMiddleware(logger))
+);
 
 ReactDOM.render(
-    <Router>
+    <Router store = {store}>
       <App />
     </Router>,
     document.getElementById("root")

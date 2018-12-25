@@ -3,16 +3,12 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
-
+class Login extends Component {
     
-    this.state = {
+    state = {
       email: "",
       password: ""
     };
-  }
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -38,7 +34,7 @@ export default class Login extends Component {
    })
    .then(function(response){ 
      if(response.data.status === true){
-       this.props.history.push('/chat');
+       
     }
     else {
       alert(<h1> "fack off" </h1> );
@@ -87,3 +83,4 @@ export default class Login extends Component {
   }
 }
 
+export default Login;
