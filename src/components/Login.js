@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, ControlLabel, Nav, Navbar, NavItem } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import {history} from "./App";
+import { Link } from "react-router-dom";
+// import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 
 class Login extends Component {
   constructor(props){
@@ -60,7 +63,26 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
+      <div className="Login container">
+
+            <Navbar fluid collapseOnSelect>
+            <Navbar.Header >
+              <Navbar.Brand>
+                <Link to="/">Menu</Link>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav pullRight>
+                <LinkContainer to="/register">
+                  <NavItem>Signup</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/login">
+                  <NavItem>Login</NavItem>
+                </LinkContainer>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -85,7 +107,8 @@ class Login extends Component {
             type="submit"
           >
             Login
-          </Button>
+            </Button>
+            
         </form>
       </div>
     );

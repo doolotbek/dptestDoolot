@@ -1,10 +1,16 @@
-@media all and (min-width: 480px) {
-    .Register {
-      padding: 60px 0;
-    }
+
+.register {
+margin-top: 15px;
+}
+      
+.register .navbar-brand {
+font-weight: bold;
+}
+.Register {
+padding: 60px 0;
+}
   
-    .register form {
-      margin: 0 auto;
-      max-width: 320px;
-    }
-} 
+.register form {
+margin: 0 auto;
+max-width: 320px;
+}
