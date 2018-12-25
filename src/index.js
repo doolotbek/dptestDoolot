@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from "react-router-dom";
-import { applyMiddleware, compose, createStore } from "redux";
+import { Provider } from "react-redux"
+import registerServiceWorker from "./registerServiceWorker";
+import { BrowserRouter } from "react-router-dom";
+import { applyMiddleware, compose, createStore } from  "redux";
 import reducer from "./reducers/reducer";
 
 
@@ -16,6 +17,7 @@ const logger = store => next => action => {
   console.groupEnd(action.type);
   return result;
 };
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(
   reducer,
@@ -23,10 +25,12 @@ export const store = createStore(
 );
 
 ReactDOM.render(
-    <Router store = {store}>
+  <Provider store = {store}>
+    <BrowserRouter>
       <App />
-    </Router>,
+    </BrowserRouter>
+  </Provider>,
     document.getElementById("root")
 );
 
-serviceWorker.unregister();
+registerServiceWorker();

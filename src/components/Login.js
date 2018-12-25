@@ -2,13 +2,20 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import {history} from "./App";
 
 class Login extends Component {
-    
-    state = {
+  constructor(props){
+    super(props)
+    this.state = {
       email: "",
       password: ""
     };
+  }
+    
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -19,6 +26,7 @@ class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
+    
   }
 
   handleSubmit = event => {
@@ -34,10 +42,11 @@ class Login extends Component {
    })
    .then(function(response){ 
      if(response.data.status === true){
-       
+    //  <Redirect to="/chat" />
+      history.push("/chat")
     }
     else {
-      alert(<h1> "fack off" </h1> );
+      alert(<h1> "lets try " </h1> );
     }
     console.log("respose",response)   
    })
@@ -83,4 +92,5 @@ class Login extends Component {
   }
 }
 
-export default Login;
+
+export default withRouter(connect(null)(Login));
