@@ -15,9 +15,9 @@ class Login extends Component {
     super(props)
     this.state = {
       email: "",
-      password: ""
-    };
-  }
+        password: ""
+      };
+    }
     
 
   validateForm() {
@@ -46,7 +46,7 @@ class Login extends Component {
    .then(function(response){ 
      if(response.data.status === true){
     //  <Redirect to="/chat" />
-      history.push("/chat")
+      history.push("/profile")
     }
     else {
       alert(<h1> "lets try " </h1> );
