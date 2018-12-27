@@ -4,27 +4,29 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
+// import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 class Profile extends Component {
   constructor(props){
     super(props)
     this.state = {
       itemArray: [],
-      popover: false
+      open: false
     }
   }
 
   handleClick = event => {
-    this.setState({
-      popover: true
-    });
+    this.setState({ open: true });
   };
 
   handleClose = () => {
     this.setState({
-      popover: false,
+      open: false,
     });
   };
 
@@ -35,7 +37,7 @@ class Profile extends Component {
 
          
       
-        <Navbar fluid collapseOnSelect>
+        <Navbar fluid >
         <Navbar.Header > <h3>Profile</h3> </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
@@ -49,18 +51,47 @@ class Profile extends Component {
             </Navbar.Collapse>
           </Navbar>
           <p>A simple note taking app</p>
-          <Popover style={{    position: "relative", bottom: "320px",width: "150px", height: "600px"}} 
-              placement="bottom" open={this.state.popover} onClose={this.handleClose} 
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                      horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'center',
-                    }}>
-                    <Typography >The content of the Popover.</Typography>
-                  </Popover>
+          
+          <Snackbar
+          // style={Snackbar}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+            backgroundColor: '#fff',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">Note archived</span>}
+          
+          action={[
+            // <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+            //   UNDO
+            // </Button>,
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+            <div>
+            <TextField
+            id="outlined-simple-start-adornment"
+            className={classNames(classes.margin, classes.textField)}
+            variant="outlined"
+            label="With outlined TextField"
+            InputProps={{
+              startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            }}
+          /></div>
+          ]}
+        />
         
       </div>
     );
