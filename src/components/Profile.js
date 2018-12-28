@@ -10,6 +10,54 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import DirectionsIcon from '@material-ui/icons/Directions';
+
+
+
+const styles = {
+  don:{
+  // width: 400,
+   position: "absolute",
+   height: 500, 
+  },
+  icon: {
+    width: 15,
+    height: 52,
+    margin: 4,
+  },
+
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    position: 'absolute',
+    alignItems: 'center',
+    width: 300,
+    top: '218px',
+    left: 2
+
+  },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+
+  divider: {
+    width: 1,
+    height: 2,
+    margin: 4,
+    
+  },
+  
+};
 
 class Profile extends Component {
   constructor(props){
@@ -30,8 +78,14 @@ class Profile extends Component {
     });
   };
 
+  handleClose = event => {
+    this.setState({ open: false });
+  };
+
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div className="Profile container">
 
@@ -53,45 +107,39 @@ class Profile extends Component {
           <p>A simple note taking app</p>
           
           <Snackbar
-          // style={Snackbar}
+          style={{ flexGrow: 0,width: 300, minHeight: 500, backgroundColor:"#F0F9FF" }}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'right',
-            backgroundColor: '#fff',
+            horizontal: 'right'
           }}
           open={this.state.open}
-          autoHideDuration={6000}
           onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">Note archived</span>}
-          
           action={[
-            // <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-            //   UNDO
-            // </Button>,
-            <IconButton
+            <IconButton 
               key="close"
-              aria-label="Close"
               color="inherit"
-              
               onClick={this.handleClose}
             >
-              <CloseIcon />
+              <CloseIcon style = {{position:"absolute", bottom:227, left:50, color: '#E6E6E6' }}/>
             </IconButton>,
-            <div>
-            <TextField
-            id="outlined-simple-start-adornment"
-            className={classNames(classes.margin, classes.textField)}
-            variant="outlined"
-            label="With outlined TextField"
-            InputProps={{
-              startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
-            }}
-          /></div>
+
+            <Paper className={classes.root} elevation={1}>
+            <IconButton className={classes.iconButton} aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <InputBase className={classes.input} placeholder="type something..." />
+            <IconButton className={classes.iconButton} aria-label="Search">
+              <SearchIcon />
+            </IconButton>
+            <Divider className={classes.divider} />
+            <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+              <DirectionsIcon />
+            </IconButton>
+            </Paper>
           ]}
-        />
+          >
+
+             </Snackbar>
         
       </div>
     );
@@ -101,4 +149,4 @@ class Profile extends Component {
 }
 
 
-export default withRouter(connect(null)(Profile));
+export default withStyles(styles) (withRouter(connect(null)(Profile)));
