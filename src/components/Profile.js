@@ -8,8 +8,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -37,9 +35,10 @@ const styles = {
     display: 'flex',
     position: 'absolute',
     alignItems: 'center',
-    width: 300,
+    width: 295,
     top: '218px',
-    left: 2
+    // left: ,
+    right: 3
 
   },
   input: {
@@ -64,22 +63,42 @@ class Profile extends Component {
     super(props)
     this.state = {
       itemArray: [],
-      open: false
+      open: false,
+      text: "",
+      search: ""
     }
+  }
+
+  validataeFrom() {
+    return this.state.text.length > 0 && this.state.search.length > 0;
   }
 
   handleClick = event => {
     this.setState({ open: true });
   };
 
+  handleChange = event => {
+    this.setState({
+      text: event.target.value
+    });
+  }
+
+  sendMesage = event => {
+    event.preventDefault();
+
+    let data = {
+      text: this.state.text,
+      search:this.state.search
+
+
+    }
+    console.log(data)
+  };
+
   handleClose = () => {
     this.setState({
       open: false,
     });
-  };
-
-  handleClose = event => {
-    this.setState({ open: false });
   };
 
 
@@ -107,32 +126,35 @@ class Profile extends Component {
           <p>A simple note taking app</p>
           
           <Snackbar
-          style={{ flexGrow: 0,width: 300, minHeight: 500, backgroundColor:"#F0F9FF" }}
+          style={{ flexGrow: 0, width: 300, minHeight: 500, backgroundColor:"#F0F9FF" }}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'right'
           }}
-          open={this.state.open}
-          onClose={this.handleClose}
+           open={this.state.open}
           action={[
             <IconButton 
-              key="close"
-              color="inherit"
-              onClick={this.handleClose}
+              
+              
+              
             >
-              <CloseIcon style = {{position:"absolute", bottom:227, left:50, color: '#E6E6E6' }}/>
+              <CloseIcon onClick={this.handleClose} style = {{position:"absolute", bottom:227, left:15 , color:'#000' }}/>
             </IconButton>,
 
             <Paper className={classes.root} elevation={1}>
             <IconButton className={classes.iconButton} aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <InputBase className={classes.input} placeholder="type something..." />
+            <InputBase className={classes.input} placeholder="type something..." 
+            type="text"
+            value={this.state.text}
+            onChange={this.handleChange}
+            />
             <IconButton className={classes.iconButton} aria-label="Search">
               <SearchIcon />
             </IconButton>
             <Divider className={classes.divider} />
-            <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+            <IconButton onClick={this.sendMesage} color="primary" className={classes.iconButton} aria-label="Directions">
               <DirectionsIcon />
             </IconButton>
             </Paper>
