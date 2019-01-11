@@ -5,8 +5,7 @@ import axios from 'axios';
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import {history} from "./App";
-import { Link } from "react-router-dom";
-// import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { Link } from "react-router-dom";  
 import { LinkContainer } from "react-router-bootstrap";
 
 
@@ -100,7 +99,7 @@ class Login extends Component {
               type="password"
             />
           </FormGroup>
-          <Button
+          <Button style = {{backgroundColor: "#F7FAFC"}}
             block
             bsSize="large"
             disabled={!this.validateForm()}

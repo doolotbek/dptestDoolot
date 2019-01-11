@@ -15,6 +15,8 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
+// import { connect } from "react-redux"
+// import {userActions} from "../_actions/userActions"
 
 
 
@@ -65,7 +67,8 @@ class Profile extends Component {
       itemArray: [],
       open: false,
       text: "",
-      search: ""
+      search: "",
+      logout: ""
     }
   }
 
@@ -73,7 +76,7 @@ class Profile extends Component {
     return this.state.text.length > 0 && this.state.search.length > 0;
   }
 
-  handleClick = event => {
+  handleClick = () => {
     this.setState({ open: true });
   };
 
@@ -82,8 +85,13 @@ class Profile extends Component {
       text: event.target.value
     });
   }
+  // handLogout = () => {
+  //   let data {
+  //     email: 
+  //   }
+  // }
 
-  sendMesage = event => {
+  sendMessage = event => {
     event.preventDefault();
 
     let data = {
@@ -114,17 +122,15 @@ class Profile extends Component {
         <Navbar.Header > <h3>Profile</h3> </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                  <NavItem> <button onClick= {this.handleClick}  >Messenger</button></NavItem>
+                  <NavItem > <button onClick= {this.handleClick}  >Messenger</button></NavItem>
                   
                 
                 <LinkContainer to="/">
-                  <NavItem>Logout</NavItem>
+                  <NavItem onClick={this.handLogout}>Logout</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
-          </Navbar>
-          <p>A simple note taking app</p>
-          
+          </Navbar>          
           <Snackbar
           style={{ flexGrow: 0, width: 300, minHeight: 500, backgroundColor:"#F0F9FF" }}
           anchorOrigin={{
@@ -133,11 +139,7 @@ class Profile extends Component {
           }}
            open={this.state.open}
           action={[
-            <IconButton 
-              
-              
-              
-            >
+            <IconButton>
               <CloseIcon onClick={this.handleClose} style = {{position:"absolute", bottom:227, left:15 , color:'#000' }}/>
             </IconButton>,
 
@@ -154,7 +156,7 @@ class Profile extends Component {
               <SearchIcon />
             </IconButton>
             <Divider className={classes.divider} />
-            <IconButton onClick={this.sendMesage} color="primary" className={classes.iconButton} aria-label="Directions">
+            <IconButton onClick={this.sendMessage} color="primary" className={classes.iconButton} aria-label="Directions">
               <DirectionsIcon />
             </IconButton>
             </Paper>
@@ -169,6 +171,14 @@ class Profile extends Component {
 
 
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     user: state.userReducer.user
+//   };
+// };
+
+
 
 
 export default withStyles(styles) (withRouter(connect(null)(Profile)));

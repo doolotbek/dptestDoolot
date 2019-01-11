@@ -25,4 +25,4 @@ var initialState = {
     }
   };
   
-  export default performerReducer;
+export default performerReducer;

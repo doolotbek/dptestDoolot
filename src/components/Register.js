@@ -19,10 +19,11 @@ import { LinkContainer } from "react-router-bootstrap";
       email: "",
       password: "",
     };
+
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.email.length > 0 && this.state.password.length > 3;
   }
 
   handleChange = event => {
@@ -81,6 +82,7 @@ import { LinkContainer } from "react-router-bootstrap";
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
+
             />
           </FormGroup>
           <FormGroup controlId="password" bsSize="large">
@@ -88,14 +90,17 @@ import { LinkContainer } from "react-router-bootstrap";
             <FormControl
               value={this.state.password}
               onChange={this.handleChange}
+
               type="password"
             />
           </FormGroup>
           <Button
+            style ={ this.validateForm ? {backgroundColor:  "#F7FAFC"} : null}
             block
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
+            
           >
             Register
           </Button>
