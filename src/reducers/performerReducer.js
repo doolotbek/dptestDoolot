@@ -20,8 +20,16 @@ var initialState = {
           receiverUser: action.receiverUser
         });
   
+    
+
+      case "All_USER":
+        return Object.assign({}, state, {
+          all_user:action.all_user
+        });
+
       default:
         return state;
+
     }
   };
   

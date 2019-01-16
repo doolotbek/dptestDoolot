@@ -1,9 +1,10 @@
 var express = require("express");
 var routes = express.Router();
 var users = require("./users");
-//var message = require("./messages");
+var messenger = require("./messenger");
+
 
 routes.use("/users", users);
-// router.use("./message" message);
+routes.use("/messenger", messenger);
 
 module.exports = routes;

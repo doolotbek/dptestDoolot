@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import axios from 'axios';
 // import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,8 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
-// import { connect } from "react-redux"
-// import {userActions} from "../_actions/userActions"
+import {performerActions} from "../_actions/performerActions"
 
 
 
@@ -67,7 +67,6 @@ class Profile extends Component {
       itemArray: [],
       open: false,
       text: "",
-      search: "",
       logout: ""
     }
   }
@@ -96,11 +95,22 @@ class Profile extends Component {
 
     let data = {
       text: this.state.text,
-      search:this.state.search
-
-
     }
-    console.log(data)
+     axios.post("/api/messenger", { data
+     })
+    .then(function(response){ 
+      if(response.data.status === true){
+
+
+        
+     
+    }
+    // .catch(function(error){ 
+    // console.log("error",error)
+    console.log(response)
+    });
+
+    
   };
 
   handleClose = () => {
@@ -152,9 +162,9 @@ class Profile extends Component {
             value={this.state.text}
             onChange={this.handleChange}
             />
-            <IconButton className={classes.iconButton} aria-label="Search">
+            {/* <IconButton className={classes.iconButton} aria-label="Search">
               <SearchIcon />
-            </IconButton>
+            </IconButton> */}
             <Divider className={classes.divider} />
             <IconButton onClick={this.sendMessage} color="primary" className={classes.iconButton} aria-label="Directions">
               <DirectionsIcon />
@@ -172,13 +182,25 @@ class Profile extends Component {
 
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: state.userReducer.user
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    // messages: state.messageReducer.messages,
+    // user: state.userReducer.user,
+    // all_users: state.userReducer.all_users
+  };
+};
+function mapDispatchToProps(dispatch) {
+  return {
+    // getAllMessages: function(messages) {
+    //   dispatch(messageActions.getAllMessages(messages));
+    // },
+    allUsers: function(all_users) {
+      dispatch(performerActions.allUsers(all_users));
+    }
+  };
+}
 
 
 
 
-export default withStyles(styles) (withRouter(connect(null)(Profile)));
+export default withStyles(styles) (withRouter(connect(mapStateToProps, mapDispatchToProps )(Profile))); 

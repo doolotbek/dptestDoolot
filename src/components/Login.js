@@ -48,7 +48,7 @@ class Login extends Component {
       history.push("/profile")
     }
     else {
-      alert(<h1> "lets try " </h1> );
+      alert( "password or email is error  "  );
     }
     console.log("respose",response)   
    })

@@ -21,3 +21,5 @@ mongoose.connection.on('connected', function () {
 });
 
 require('./model/Performer');
+
+require('./model/PerformerMessage')
