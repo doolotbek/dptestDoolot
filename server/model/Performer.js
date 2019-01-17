@@ -10,8 +10,11 @@ var performerSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	performerId: Number
+
 
 });
+
 
 module.exports = mongoose.model( 'Performer', performerSchema );
 	

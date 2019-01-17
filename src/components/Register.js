@@ -18,6 +18,7 @@ import { LinkContainer } from "react-router-bootstrap";
     this.state = {
       email: "",
       password: "",
+      
     };
 
   }
@@ -37,7 +38,8 @@ import { LinkContainer } from "react-router-bootstrap";
 
     var data = { 
       username: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      id: this.state.id
     }
     console.log(data)
 
