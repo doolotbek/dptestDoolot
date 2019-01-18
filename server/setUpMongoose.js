@@ -1,9 +1,11 @@
 const mongoose = require( 'mongoose' );
+const autoIncrement = require('mongoose-auto-increment')
 
 var dbuser = 'oleksiileontiev',
 	dbpassword = 'MtPVtPGqJaXB42';
 var dbURI = 'mongodb://'+dbuser+':'+dbpassword+'@ds151452.mlab.com:51452/dreampirates';
 mongoose.connect(dbURI);
+autoIncrement.initialize(mongoose.connection);
 mongoose.connection.on('connected', function () {
      console.log('Mongoose connected to ' + dbURI);
 });

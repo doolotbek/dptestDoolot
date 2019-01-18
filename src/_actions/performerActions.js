@@ -1,21 +1,21 @@
 export const performerActions = {
-    login: user => ({
+    login: performer => ({
       type: "LOGIN",
-      user
+      performer
     }),
     logout: () => ({
       type: "LOGOUT"
     }),
-    setOnlineUsers: users => ({
-      type: "SET_ONLINE_USERS",
-      users
+    setOnlinePerformers: performers => ({
+      type: "SET_ONLINE_PERFORMERS",
+      performers
     }),
-    allUsers: all_users => ({
-      type: "ALL_USERS",
-      all_users
+    allPerformers: all_performers => ({
+      type: "ALL_PERFORMERS",
+      all_performers
     }),
-    setReceiver: receiverUser => ({
+    setReceiver: receiverPerformer => ({
       type: "SET_RECEIVER",
-      receiverUser
+      receiverPerformer
     })
 };

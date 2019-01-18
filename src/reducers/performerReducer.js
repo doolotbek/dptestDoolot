@@ -1,30 +1,30 @@
 var initialState = {
-    user: {},
+    performer: {},
     receiverUser: "",
-    users: []
+    performers: []
   };
   
   const performerReducer = (state = initialState, action) => {
     switch (action.type) {
       case "LOGIN":
         return Object.assign({}, state, {
-          user: action.user
+          performer: action.performer
         });
-      case "SET_ONLINE_USERS":
+      case "SET_ONLINE_PERFORMERS":
         return Object.assign({}, state, {
-          users: action.users
+          performers: action.performers
         });
   
       case "SET_RECEIVER":
         return Object.assign({}, state, {
-          receiverUser: action.receiverUser
+          receiverPerformer: action.receiverPerformer
         });
   
     
 
-      case "All_USER":
+      case "ALL_PERFORMERS":
         return Object.assign({}, state, {
-          all_user:action.all_user
+          all_performers:action.all_performers
         });
 
       default:

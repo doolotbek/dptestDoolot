@@ -12,6 +12,7 @@
     "http-errors": "^1.7.1",
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^5.3.14",
+    "mongoose-auto-increment": "^5.0.1",
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.3",

@@ -1,6 +1,10 @@
-const mongoose = require( 'mongoose' );
+let mongoose = require( 'mongoose' );
+let autoIncrement = require("mongoose-auto-increment");
 
-var performerSchema = new mongoose.Schema({
+
+
+
+let performerSchema = new mongoose.Schema({
 	username : {
 		type: String,
 		unique: true,
@@ -10,11 +14,11 @@ var performerSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	performerId: Number
+	performerId: Number,
 
 
 });
 
 
-module.exports = mongoose.model( 'Performer', performerSchema );
-	
+performerSchema.plugin(autoIncrement.plugin, { model: "Preformer", field: "performerId" });
+module.exports = mongoose.model("Performer", performerSchema);

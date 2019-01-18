@@ -39,7 +39,6 @@ import { LinkContainer } from "react-router-bootstrap";
     var data = { 
       username: this.state.email,
       password: this.state.password,
-      id: this.state.id
     }
     console.log(data)
 
@@ -114,4 +113,3 @@ import { LinkContainer } from "react-router-bootstrap";
 
 
 export default withRouter(connect(null)(Register));
-
