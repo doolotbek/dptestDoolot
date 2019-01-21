@@ -14,7 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import FaceIcon from '@material-ui/icons/TagFaces';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import {performerActions} from "../_actions/performerActions"
 
@@ -162,9 +162,9 @@ class Profile extends Component {
             value={this.state.text}
             onChange={this.handleChange}
             />
-            {/* <IconButton className={classes.iconButton} aria-label="Search">
-              <SearchIcon />
-            </IconButton> */}
+            <IconButton className={classes.iconButton} aria-label="Search">
+              <FaceIcon />
+            </IconButton>
             <Divider className={classes.divider} />
             <IconButton onClick={this.sendMessage} color="primary" className={classes.iconButton} aria-label="Directions">
               <DirectionsIcon />
