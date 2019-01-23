@@ -7,17 +7,16 @@ import { connect } from "react-redux";
 import {history} from "./App";
 import { Link } from "react-router-dom";  
 import { LinkContainer } from "react-router-bootstrap";
-
+import {performerActions} from "../_actions/performerActions";
 
 class Login extends Component {
-  constructor(props){
+  constructor(props){ 
     super(props)
     this.state = {
       email: "",
         password: ""
       };
     }
-    
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -31,9 +30,8 @@ class Login extends Component {
     
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
- 
+  handleSubmit = e => {
+    e.preventDefault();
     let data = {
       username: this.state.email,
       password: this.state.password
@@ -42,20 +40,26 @@ class Login extends Component {
 
     axios.post("/api/users/login", { data
    })
-   .then(function(response){ 
+   .then(response => { 
+    console.log("respose",response) 
      if(response.data.status === true){
-    //  <Redirect to="/chat" />
-      history.push("/profile")
+      console.log("resposes",response) 
+     this.onLoginSuccess(response);
     }
     else {
       alert( "password or email is error  "  );
     }
-    console.log("respose",response)   
    })
    .catch(function(error){ 
    console.log("error",error)
    });
-  
+  };
+
+  onLoginSuccess = response => {
+    console.log("this", this);
+    console.log("data", response.data);
+    this.props.login(response.data.performer)
+    this.props.history.push("/profile")
   }
 
   render() {
@@ -80,7 +84,7 @@ class Login extends Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-        <form onSubmit={this.handleSubmit}>
+        <form >
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
@@ -102,6 +106,7 @@ class Login extends Component {
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
+            onClick={this.handleSubmit}
           >
             Login
             </Button>
@@ -110,7 +115,15 @@ class Login extends Component {
       </div>
     );
   }
+} 
+
+function mapDispatchToProps(dispatch) {
+  return {
+    login: function(data) {
+      dispatch(performerActions.login(data));
+    }
+  };
 }
 
 
-export default withRouter(connect(null)(Login));
+export default withRouter(connect(null, mapDispatchToProps)(Login));

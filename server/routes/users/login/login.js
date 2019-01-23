@@ -15,16 +15,15 @@ function check(req, res, next) {
 	 };
 	 console.log(req.body.data.username);
 		 
-	 var performer = new Performer(userData);
-	 Performer.findOne({username: userData.username, password: userData.password		}, function(err, user) {
+	 Performer.findOne({username: userData.username, password: userData.password}, function(err, performer) {
 		if(err) {
 			console.log(err);
 			return res.status(500).send();
 		}
-		if(!user) {
+		if(!performer) {
 			return res.send({status:false})
 		}
-		return res.send({status:true})
+		return res.send({status: true, performer: performer})
 		
 
 	})

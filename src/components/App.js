@@ -9,8 +9,6 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Profile from "./Profile";
-import { withRouter } from "react-router";
-import { connect } from "react-redux";
 import createHistory from "history/createBrowserHistory";
 export const history = createHistory();
 
@@ -20,7 +18,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App container">
-			<Router history={history}>
+		
 				<Switch>
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/login" render={() => <Login/>} />
@@ -29,12 +27,10 @@ class App extends Component {
 					{/* <Route exact path="/" render={() => <Logout />}/>  */}
 					<NotFound />				
 				</Switch>
-				</Router>
-          
-				
+					
 			</div>
 		);
 	}
 }	
 
-export default withRouter(connect(null)(App));
+export default App;

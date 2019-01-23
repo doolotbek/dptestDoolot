@@ -1,6 +1,6 @@
 var initialState = {
     performer: {},
-    receiverUser: "",
+    receiverPerformer: "",
     performers: []
   };
   
